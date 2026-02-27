@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Optional: Add your custom styles or theme overrides here */
+/* Example: */
+@theme {
+  --color-primary: #c2410c;     /* terracotta orange */
+  --color-accent: #d97706;       /* gold/amber */
+  --color-green: #065f46;        /* deep green */
+}
+
+/* Or use classic @layer if needed */
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+}

@@ -1,17 +1,473 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Victoria Herbs & Spices | Premium Kenyan Herbs & Spices – Exported Worldwide"
+  description="Traceable, sustainably sourced Kenyan herbs and spices direct from our farms to Europe, USA, and Canada. Organic, pure, and full of flavour."
+>
+  <!-- NAVBAR -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-100"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 bg-gradient-to-br from-orange-600 to-amber-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl"
+        >
+          🌿
+        </div>
+        <div>
+          <span
+            class="font-display text-2xl tracking-tight font-semibold text-stone-900"
+            >Victoria</span
+          >
+          <span class="text-xs tracking-[3px] text-amber-600 block -mt-1"
+            >HERBS & SPICES</span
+          >
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+        <a href="#products" class="hover:text-amber-600 transition">Products</a>
+        <a href="#story" class="hover:text-amber-600 transition">Our Story</a>
+        <a href="#quality" class="hover:text-amber-600 transition">Quality</a>
+        <a href="#markets" class="hover:text-amber-600 transition"
+          >Global Markets</a
+        >
+        <a href="#contact" class="hover:text-amber-600 transition">Contact</a>
+      </div>
+
+      <a
+        href="#contact"
+        class="px-8 py-3.5 bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white font-semibold rounded-2xl transition-all active:scale-95"
+      >
+        Request Quote
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section
+    class="relative h-screen flex items-center justify-center overflow-hidden"
+  >
+    <!-- Use a vibrant spice hero image -->
+    <div
+      class="absolute inset-0 bg-[url('https://m.media-amazon.com/images/I/81g10zDxSHL._AC_UF894,1000_QL80_.jpg')] bg-cover bg-center brightness-75"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70"
+    >
+    </div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div
+        class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl text-white text-sm mb-6"
+      >
+        🌍 Direct from Kenya • Trusted in 3 Continents
+      </div>
+      <h1
+        class="text-6xl md:text-7xl font-display font-bold text-white leading-none tracking-tighter"
+      >
+        Authentic Kenyan<br />Herbs & Spices
+      </h1>
+      <p class="mt-6 text-xl text-white/90 max-w-lg mx-auto">
+        Sustainably grown, traceable, and bursting with flavour – straight from
+        Kenyan soil to global kitchens.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+        <a
+          href="#products"
+          class="px-10 py-4 bg-white text-stone-900 font-semibold rounded-2xl hover:bg-amber-50 transition text-lg"
+        >
+          View Our Range
+        </a>
+        <a
+          href="#contact"
+          class="px-10 py-4 border-2 border-white text-white font-semibold rounded-2xl hover:bg-white/10 transition text-lg"
+        >
+          Get Export Quote
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/70 text-xs tracking-widest"
+    >
+      SCROLL TO DISCOVER
+      <div
+        class="w-px h-12 bg-gradient-to-b from-transparent via-white/50 to-transparent mt-2"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="bg-stone-50 py-6 border-b">
+    <div
+      class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-x-12 gap-y-4 text-sm text-stone-600 items-center"
+    >
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🌱</span> EU & USDA Organic Options
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">✅</span> HACCP • ISO 22000 Certified
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🇪🇺🇺🇸🇨🇦</span> REACH, FDA & CFIA Compliant
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">✈️</span> Fast Shipping to EU, USA, Canada
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR STORY -->
+  <section id="story" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="uppercase text-amber-600 text-sm tracking-[2px]"
+          >Nairobi, Kenya • Est. 2018</span
+        >
+        <h2
+          class="text-5xl font-display font-semibold tracking-tighter mt-3 leading-none"
+        >
+          From Kenyan fields<br />to international tables
+        </h2>
+        <div class="prose mt-8 text-lg text-stone-600">
+          <p>
+            Like Kenyan tea, Kenyan herbs and spices are popular across Europe,
+            USA, and Canada for its rich taste. Victoria Herbs & Spices partners
+            with hundreds of smallholder farmers across Kenya's fertile regions,
+            delivering fair trade, sustainable, and fully traceable herbs and
+            spices.
+          </p>
+          <p>
+            Sun-dried under clear skies, meticulously sorted, and packed in our
+            state-of-the-art Nairobi facility.
+          </p>
+        </div>
+        <div class="grid grid-cols-3 gap-8 mt-12">
+          <div>
+            <div class="text-4xl font-semibold text-orange-600">60+</div>
+            <div class="text-sm text-stone-500 mt-1">Varieties</div>
+          </div>
+          <div>
+            <div class="text-4xl font-semibold text-orange-600">15+</div>
+            <div class="text-sm text-stone-500 mt-1">Export Countries</div>
+          </div>
+          <div>
+            <div class="text-4xl font-semibold text-orange-600">97%</div>
+            <div class="text-sm text-stone-500 mt-1">Repeat Business</div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="https://crazykanairofarming.com/wp-content/uploads/2026/02/farming-guides-kenya-5-16.webp"
+        alt="Kenyan farmers harvesting"
+        class="rounded-3xl shadow-2xl object-cover"
+      />
+    </div>
+  </section>
+
+  <!-- PRODUCTS (expanded with more variety) -->
+  <section id="products" class="py-24 bg-gradient-to-b from-stone-50 to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-amber-600 uppercase tracking-widest text-sm"
+          >Our Premium Range</span
+        >
+        <h2 class="text-5xl font-display tracking-tighter mt-3">
+          Signature Kenyan Herbs & Spices
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Turmeric -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <div
+            class="h-64 bg-cover bg-center"
+            style="background-image: url('https://m.media-amazon.com/images/I/71fApF5ixgL.jpg_BO30,255,255,255_UF750,750_SR1910,1000,0,C_QL100_.jpg')"
+          >
+          </div>
+          <div class="p-8">
+            <h3 class="font-semibold text-2xl">Organic Turmeric Powder</h3>
+            <p class="text-stone-600 mt-3 text-sm leading-relaxed">
+              High-curcumin (5%+), vibrant & aromatic.
+            </p>
+            <div class="mt-6 flex justify-between items-end">
+              <span class="text-xs uppercase tracking-widest text-emerald-600"
+                >MOQ 500 kg</span
+              >
+              <a
+                href="#contact"
+                class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                >Request Sample →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Cardamom -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <div
+            class="h-64 bg-cover bg-center"
+            style="background-image: url('https://sbnri.com/blog/wp-content/uploads/2022/09/74416043-2.jpeg')"
+          >
+          </div>
+          <div class="p-8">
+            <h3 class="font-semibold text-2xl">Green Cardamom Pods</h3>
+            <p class="text-stone-600 mt-3 text-sm leading-relaxed">
+              Premium grade, intense flavour from highland farms.
+            </p>
+            <div class="mt-6 flex justify-between items-end">
+              <span class="text-xs uppercase tracking-widest text-emerald-600"
+                >MOQ 300 kg</span
+              >
+              <a
+                href="#contact"
+                class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                >Request Sample →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Ginger -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <div
+            class="h-64 bg-cover bg-center"
+            style="background-image: url('https://goshenisafaris.com/wp-content/uploads/2025/01/tanzania-spices-blog-2.webp')"
+          >
+          </div>
+          <div class="p-8">
+            <h3 class="font-semibold text-2xl">
+              Dried Ginger (Slices & Powder)
+            </h3>
+            <p class="text-stone-600 mt-3 text-sm leading-relaxed">
+              Rich volatile oils, sun-dried naturally.
+            </p>
+            <div class="mt-6 flex justify-between items-end">
+              <span class="text-xs uppercase tracking-widest text-emerald-600"
+                >MOQ 1 ton</span
+              >
+              <a
+                href="#contact"
+                class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                >Request Sample →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Black Pepper / Others -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <div
+            class="h-64 bg-cover bg-center"
+            style="background-image: url('https://www.jkcart.com/uploads/blogs/blogImg_533946348282417617514769319528.jpg')"
+          >
+          </div>
+          <div class="p-8">
+            <h3 class="font-semibold text-2xl">Black Pepper & Cloves</h3>
+            <p class="text-stone-600 mt-3 text-sm leading-relaxed">
+              Bold aroma, hand-sorted quality.
+            </p>
+            <div class="mt-6 flex justify-between items-end">
+              <span class="text-xs uppercase tracking-widest text-emerald-600"
+                >MOQ 500 kg</span
+              >
+              <a
+                href="#contact"
+                class="text-sm font-medium text-orange-600 hover:text-orange-700"
+                >Request Sample →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY & CERTIFICATIONS -->
+  <section id="quality" class="py-24 bg-stone-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-16">
+      <div class="md:col-span-5">
+        <h2 class="text-5xl font-display tracking-tighter">
+          Uncompromising Quality & Traceability
+        </h2>
+        <ul class="mt-10 space-y-8 text-lg">
+          <li class="flex gap-6">
+            <span class="text-3xl">🔬</span> Third-party lab tested for purity &
+            contaminants
+          </li>
+          <li class="flex gap-6">
+            <span class="text-3xl">🌍</span> Full farm-to-fork traceability
+          </li>
+          <li class="flex gap-6">
+            <span class="text-3xl">♻️</span> Eco-friendly drying & minimal-waste
+            packaging
+          </li>
+          <li class="flex gap-6">
+            <span class="text-3xl">📦</span> Export-grade vacuum & moisture-proof
+            packing
+          </li>
+        </ul>
+      </div>
+      <div class="md:col-span-7">
+        <img
+          src="https://standuppouch.sealandpac.co.in/wp-content/uploads/2021/07/17-2.jpg"
+          alt="Premium spice packaging"
+          class="rounded-3xl"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL MARKETS -->
+  <section id="markets" class="py-24">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <span class="uppercase text-amber-600 tracking-widest"
+        >Exporting Excellence</span
+      >
+      <h2 class="text-5xl font-display tracking-tighter mt-4">
+        Trusted in Europe, USA & Canada
+      </h2>
+
+      <div class="mt-12 flex justify-center">
+        <!-- Placeholder global map; replace with real one or SVG later -->
+        <img
+          src="https://images.bannerbear.com/direct/4mGpW3zwpg0ZK0AxQw/requests/000/099/954/135/MRj52Zwoa6xJOZLvYxWkdO3eE/a4b8180d8408bbb1f44b9a0f13e8eae27c76ec6e.jpg"
+          alt="Spices overview"
+          class="max-w-4xl rounded-3xl shadow-2xl"
+        />
+      </div>
+
+      <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-16">
+        <div class="text-center">
+          <div class="text-6xl mb-4">🇪🇺</div>
+          <div class="font-semibold">Europe</div>
+          <div class="text-sm text-stone-500">
+            Germany, Netherlands, UK, France
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="text-6xl mb-4">🇺🇸</div>
+          <div class="font-semibold">United States</div>
+          <div class="text-sm text-stone-500">
+            FDA compliant • Efficient logistics
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="text-6xl mb-4">🇨🇦</div>
+          <div class="font-semibold">Canada</div>
+          <div class="text-sm text-stone-500">
+            CFIA approved • Major ports served
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section
+    id="contact"
+    class="py-32 bg-gradient-to-br from-amber-900 to-orange-900 text-white"
+  >
+    <div class="max-w-2xl mx-auto text-center px-6">
+      <h2 class="text-5xl font-display tracking-tighter">
+        Bring Kenyan Flavour to Your Market
+      </h2>
+      <p class="mt-6 text-xl opacity-90">
+        Custom quotes in 24 hours. Samples available on request.
+      </p>
+
+      <form
+        class="mt-12 space-y-6"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+      >
+        <input
+          type="text"
+          name="company"
+          placeholder="Company Name"
+          required
+          class="w-full px-8 py-5 rounded-2xl bg-white/10 placeholder:text-white/60 focus:outline-none"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Business Email"
+          required
+          class="w-full px-8 py-5 rounded-2xl bg-white/10 placeholder:text-white/60 focus:outline-none"
+        />
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Which herbs/spices are you interested in? Quantity? ..."
+          class="w-full px-8 py-5 rounded-2xl bg-white/10 placeholder:text-white/60 focus:outline-none"
+        ></textarea>
+        <button
+          type="submit"
+          class="w-full py-6 bg-white text-stone-900 font-semibold text-lg rounded-2xl hover:bg-amber-100 transition"
+          >Submit Inquiry</button
+        >
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-950 text-white/70 py-20">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-3 text-white">
+          <div
+            class="w-9 h-9 bg-gradient-to-br from-orange-500 to-amber-400 rounded-2xl flex items-center justify-center text-3xl"
+          >
+            🌿
+          </div>
+          <span class="font-display text-2xl">Victoria Herbs & Spices</span>
+        </div>
+        <p class="mt-6 text-sm">
+          Nairobi, Kenya<br />Premium exports since 2018
+        </p>
+      </div>
+      <div class="text-sm space-y-2">
+        <div class="font-medium text-white mb-4">Quick Links</div>
+        <a href="#products" class="block hover:text-white">Products</a>
+        <a href="#quality" class="block hover:text-white"
+          >Quality & Certifications</a
+        >
+        <a href="#" class="block hover:text-white">Sustainability</a>
+      </div>
+      <div class="text-sm space-y-2">
+        <div class="font-medium text-white mb-4">Contact</div>
+        <a
+          href="mailto:export@victoriaherbs.co.ke"
+          class="block hover:text-white">export@victoriaherbs.co.ke</a
+        >
+        <a href="tel:+254700000000" class="block hover:text-white"
+          >+254 700 000 000</a
+        >
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-widest mb-4">Connect</div>
+        <div class="flex gap-6 text-2xl">
+          <a href="#" class="hover:text-white">Instagram</a>
+          <a href="#" class="hover:text-white">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs mt-20 opacity-50">
+      © 2026 Victoria Herbs & Spices Ltd. Proudly Kenyan.
+    </div>
+  </footer>
+</Layout>
