@@ -1,0 +1,425 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Product data structure
+const productCategories = [
+  {
+    id: "moringa",
+    name: "Moringa Products",
+    description: "Nutrient-dense superfood from the 'Miracle Tree'",
+    icon: "🌿",
+    theme: {
+      bg: "from-emerald-50 to-green-50",
+      border: "border-emerald-200",
+      accent: "text-emerald-700",
+      gradient: "from-emerald-600 to-green-600"
+    },
+    products: [
+      {
+        name: "Organic Moringa Leaf Powder",
+        description: "Fine green powder, perfect for smoothies, supplements, and functional foods. Rich in iron, calcium, and vitamins.",
+        image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Meru, Kenya",
+          certification: "EU Organic, USDA Organic",
+          shelfLife: "24 months",
+          moisture: "≤5%"
+        },
+        packaging: [
+          { size: "500g", price: 12.50, moq: 20 },
+          { size: "1kg", price: 22.00, moq: 10 },
+          { size: "5kg", price: 95.00, moq: 5 },
+          { size: "10kg", price: 175.00, moq: 3 },
+          { size: "25kg", price: 400.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Dried Moringa Leaves",
+        description: "Whole dried leaves, ideal for tea blending and traditional preparations. Hand-harvested and sun-dried.",
+        image: "https://images.unsplash.com/photo-1615485738259-5f67f1cbd37a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Makueni, Kenya",
+          certification: "Organic in conversion",
+          shelfLife: "18 months",
+          moisture: "≤8%"
+        },
+        packaging: [
+          { size: "500g", price: 10.00, moq: 20 },
+          { size: "1kg", price: 18.00, moq: 10 },
+          { size: "5kg", price: 80.00, moq: 5 },
+          { size: "10kg", price: 150.00, moq: 3 },
+          { size: "25kg", price: 350.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Moringa Seed Oil",
+        description: "Cold-pressed from mature seeds. Premium oil for cosmetics and personal care. High in antioxidants.",
+        image: "https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Kitui, Kenya",
+          certification: "Cosmetic grade",
+          shelfLife: "24 months",
+          extraction: "Cold-pressed"
+        },
+        packaging: [
+          { size: "100ml", price: 15.00, moq: 50 },
+          { size: "250ml", price: 32.00, moq: 30 },
+          { size: "500ml", price: 58.00, moq: 20 },
+          { size: "1L", price: 110.00, moq: 10 },
+          { size: "5L", price: 500.00, moq: 2 }
+        ],
+        unit: "bottle"
+      }
+    ]
+  },
+  {
+    id: "chilli",
+    name: "Chilli Products",
+    description: "Fiery African chillies, sun-dried to perfection",
+    icon: "🌶️",
+    theme: {
+      bg: "from-orange-50 to-red-50",
+      border: "border-orange-200",
+      accent: "text-orange-700",
+      gradient: "from-orange-600 to-red-600"
+    },
+    products: [
+      {
+        name: "Bird's Eye Chilli Whole",
+        description: "Small but mighty! 80,000-100,000 SHU. Whole dried chillies, hand-sorted for export quality.",
+        image: "https://images.unsplash.com/photo-1594232202007-3477c8ac1b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Machakos, Kenya",
+          certification: "Non-GMO, HACCP",
+          shelfLife: "24 months",
+          heatLevel: "80,000-100,000 SHU"
+        },
+        packaging: [
+          { size: "500g", price: 8.50, moq: 20 },
+          { size: "1kg", price: 15.00, moq: 10 },
+          { size: "5kg", price: 70.00, moq: 5 },
+          { size: "10kg", price: 135.00, moq: 3 },
+          { size: "25kg", price: 320.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Cayenne Chilli Powder",
+        description: "Fine ground red powder, consistent heat and color. Perfect for spice blends and industrial use.",
+        image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Thika, Kenya",
+          certification: "Non-GMO, HACCP",
+          shelfLife: "24 months",
+          heatLevel: "30,000-50,000 SHU"
+        },
+        packaging: [
+          { size: "500g", price: 7.50, moq: 20 },
+          { size: "1kg", price: 13.00, moq: 10 },
+          { size: "5kg", price: 60.00, moq: 5 },
+          { size: "10kg", price: 115.00, moq: 3 },
+          { size: "25kg", price: 275.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Chilli Flakes",
+        description: "Crushed red pepper with seeds, adding texture and heat to pizzas, pastas, and oils.",
+        image: "https://images.unsplash.com/photo-1594232202007-3477c8ac1b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Meru, Kenya",
+          certification: "Non-GMO",
+          shelfLife: "18 months",
+          heatLevel: "40,000-60,000 SHU"
+        },
+        packaging: [
+          { size: "500g", price: 6.50, moq: 20 },
+          { size: "1kg", price: 12.00, moq: 10 },
+          { size: "5kg", price: 55.00, moq: 5 },
+          { size: "10kg", price: 105.00, moq: 3 },
+          { size: "25kg", price: 250.00, moq: 1 }
+        ],
+        unit: "bag"
+      }
+    ]
+  },
+  {
+    id: "hibiscus",
+    name: "Hibiscus Products",
+    description: "Deep crimson calyces, naturally tart and vibrant",
+    icon: "🌺",
+    theme: {
+      bg: "from-rose-50 to-pink-50",
+      border: "border-rose-200",
+      accent: "text-rose-700",
+      gradient: "from-rose-600 to-pink-600"
+    },
+    products: [
+      {
+        name: "Dried Hibiscus Flowers",
+        description: "Whole dried calyces (Hibiscus sabdariffa). Deep red color, naturally tart flavor. Perfect for teas and beverages.",
+        image: "https://images.unsplash.com/photo-1629819109533-9d0fb5b6c972?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Kitui, Kenya",
+          certification: "EU Organic",
+          shelfLife: "24 months",
+          moisture: "≤10%"
+        },
+        packaging: [
+          { size: "500g", price: 9.50, moq: 20 },
+          { size: "1kg", price: 17.00, moq: 10 },
+          { size: "5kg", price: 80.00, moq: 5 },
+          { size: "10kg", price: 155.00, moq: 3 },
+          { size: "25kg", price: 375.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Hibiscus Powder",
+        description: "Fine ground hibiscus powder. Intense color and flavor, ideal for natural food coloring and instant beverage mixes.",
+        image: "https://images.unsplash.com/photo-1597481495646-7a69a6033b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Machakos, Kenya",
+          certification: "Organic",
+          shelfLife: "18 months",
+          colorValue: "Deep red"
+        },
+        packaging: [
+          { size: "500g", price: 12.00, moq: 20 },
+          { size: "1kg", price: 22.00, moq: 10 },
+          { size: "5kg", price: 105.00, moq: 5 },
+          { size: "10kg", price: 200.00, moq: 3 },
+          { size: "25kg", price: 480.00, moq: 1 }
+        ],
+        unit: "bag"
+      },
+      {
+        name: "Hibiscus Tea Cuts",
+        description: "Coarsely cut hibiscus, optimized for tea bags. Consistent particle size for even infusion.",
+        image: "https://images.unsplash.com/photo-1563911892437-1feda0179e1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        specs: {
+          origin: "Meru, Kenya",
+          certification: "Organic in conversion",
+          shelfLife: "24 months",
+          cutSize: "2-4mm"
+        },
+        packaging: [
+          { size: "500g", price: 8.50, moq: 20 },
+          { size: "1kg", price: 15.00, moq: 10 },
+          { size: "5kg", price: 72.00, moq: 5 },
+          { size: "10kg", price: 140.00, moq: 3 },
+          { size: "25kg", price: 340.00, moq: 1 }
+        ],
+        unit: "bag"
+      }
+    ]
+  }
+];
+
+// Format price with 2 decimals
+const formatPrice = (price: number) => {
+  return price.toFixed(2);
+};
+---
+
+<Layout
+  title="Products | Victoria Herbs & Spices – Premium Kenyan Moringa, Chilli & Hibiscus"
+  description="Explore our premium range of Kenyan herbs and spices: Organic Moringa, African Bird's Eye Chilli, and Dried Hibiscus Flowers. Export quality, fully traceable."
+>
+  <!-- Page Header -->
+  <section class="relative py-24 bg-gradient-to-br from-stone-900 to-amber-900 text-white">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="text-5xl md:text-6xl font-display font-bold mb-6">Our Premium Products</h1>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Hand-selected, sun-dried, and sorted to perfection. Each product tells the story of Kenyan soil, Kenyan hands, and uncompromising quality.
+      </p>
+    </div>
+  </section>
+
+  <!-- Export Info Bar -->
+  <div class="bg-amber-50 border-y border-amber-200 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-stone-700">
+        <span class="flex items-center gap-2">
+          <span class="text-amber-600 text-lg">🌱</span>
+          <span>All products 100% traceable</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="text-amber-600 text-lg">🔬</span>
+          <span>Third-party lab tested</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="text-amber-600 text-lg">✈️</span>
+          <span>Global shipping available</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="text-amber-600 text-lg">📋</span>
+          <span>Custom documentation</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Sections -->
+  <div class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Quick Category Navigation -->
+      <div class="flex flex-wrap justify-center gap-4 mb-16">
+        {productCategories.map((category) => (
+          <a
+            href={`#${category.id}`}
+            class="group px-6 py-3 bg-stone-50 hover:bg-amber-50 rounded-full border border-stone-200 hover:border-amber-300 transition-all"
+          >
+            <span class="mr-2 text-xl">{category.icon}</span>
+            <span class="font-medium text-stone-700 group-hover:text-amber-700">{category.name}</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Products Loop -->
+      {productCategories.map((category) => (
+        <section id={category.id} class="mb-24 scroll-mt-24">
+          <!-- Category Header -->
+          <div class="text-center mb-12">
+            <div class="inline-block p-4 bg-gradient-to-br {category.theme.bg} rounded-full mb-4">
+              <span class="text-4xl">{category.icon}</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-stone-900 mb-4">{category.name}</h2>
+            <p class="text-xl text-stone-600 max-w-2xl mx-auto">{category.description}</p>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="grid lg:grid-cols-3 gap-8">
+            {category.products.map((product) => (
+              <div class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-stone-100">
+                <!-- Product Image -->
+                <div class="relative h-64 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-stone-700 shadow-sm">
+                    MOQ: {Math.min(...product.packaging.map(p => p.moq))} {product.unit}s
+                  </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-stone-900 mb-2 group-hover:text-amber-700 transition">
+                    {product.name}
+                  </h3>
+                  <p class="text-stone-600 text-sm mb-4">{product.description}</p>
+
+                  <!-- Specs Grid -->
+                  <div class="grid grid-cols-2 gap-2 mb-4 text-xs bg-stone-50 p-3 rounded-xl">
+                    <div>
+                      <span class="text-stone-500">Origin</span>
+                      <p class="font-medium text-stone-700">{product.specs.origin}</p>
+                    </div>
+                    <div>
+                      <span class="text-stone-500">Certification</span>
+                      <p class="font-medium text-stone-700">{product.specs.certification}</p>
+                    </div>
+                    <div>
+                      <span class="text-stone-500">Shelf Life</span>
+                      <p class="font-medium text-stone-700">{product.specs.shelfLife}</p>
+                    </div>
+                    <div>
+                      <span class="text-stone-500">Moisture</span>
+                      <p class="font-medium text-stone-700">{product.specs.moisture || product.specs.heatLevel || product.specs.colorValue}</p>
+                    </div>
+                  </div>
+
+                  <!-- Packaging Options -->
+                  <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm font-semibold text-stone-700">Packaging Options</span>
+                      <span class="text-xs text-stone-500">All prices FOB Mombasa</span>
+                    </div>
+                    <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                      {product.packaging.map((pkg) => (
+                        <div class="flex justify-between items-center text-sm bg-white border border-stone-100 hover:border-amber-200 p-2 rounded-lg transition">
+                          <div class="flex items-center gap-2">
+                            <span class="font-medium text-stone-900">{pkg.size}</span>
+                            <span class="text-xs text-stone-500">MOQ: {pkg.moq}</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <span class="font-semibold text-amber-700">${formatPrice(pkg.price)}</span>
+                            <span class="text-xs text-stone-400">/{pkg.size}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="flex gap-2 mt-4">
+                    <a
+                      href={`/contact?quote=true&product=${encodeURIComponent(product.name)}`}
+                      class="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-3 px-4 rounded-xl transition text-center"
+                    >
+                      Request Quote
+                    </a>
+                    <a
+                      href={`/contact?samples=true&product=${encodeURIComponent(product.name)}`}
+                      class="flex-1 border-2 border-stone-200 hover:border-amber-300 text-stone-700 hover:text-amber-700 text-sm font-semibold py-3 px-4 rounded-xl transition text-center"
+                    >
+                      Order Sample
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- Bulk Orders CTA -->
+      <section class="mt-16 bg-gradient-to-br from-stone-900 to-amber-900 rounded-3xl p-12 text-white text-center">
+        <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Need Larger Quantities?</h2>
+        <p class="text-white/80 text-lg max-w-2xl mx-auto mb-8">
+          We offer container-load pricing and customized packaging for importers, distributors, and manufacturers. Contact our export team for a tailored quote.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact?quote=true&bulk=true"
+            class="bg-white text-stone-900 hover:bg-amber-50 px-8 py-4 rounded-xl font-semibold transition shadow-lg"
+          >
+            Request Bulk Quote
+          </a>
+          <a
+            href="/contact"
+            class="border-2 border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-xl font-semibold transition"
+          >
+            Contact Export Team
+          </a>
+        </div>
+      </section>
+
+      <!-- Shipping & Quality Info -->
+      <div class="mt-16 grid md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <div class="text-4xl mb-4">📦</div>
+          <h3 class="font-bold text-stone-900 mb-2">Flexible Packaging</h3>
+          <p class="text-stone-600 text-sm">From sample packs to 25kg export bags. Custom packaging available for large orders.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-4">🔬</div>
+          <h3 class="font-bold text-stone-900 mb-2">Lab Tested</h3>
+          <p class="text-stone-600 text-sm">Each batch comes with a Certificate of Analysis. Third-party testing available on request.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-4">🌍</div>
+          <h3 class="font-bold text-stone-900 mb-2">Global Shipping</h3>
+          <p class="text-stone-600 text-sm">Door-to-door logistics to Europe, North America, and Asia. We handle all documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

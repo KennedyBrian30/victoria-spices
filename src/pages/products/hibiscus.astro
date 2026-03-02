@@ -1,0 +1,836 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Kenyan Hibiscus | Victoria Herbs & Spices – Premium Dried Hibiscus Flowers from Kenya"
+  description="Kenyan Hibiscus (Hibiscus sabdariffa): Grown in Africa's highlands. Deep crimson calyces with intense cranberry flavor. Naturally tart, 100% sun-dried, and rich in antioxidants."
+>
+  <!-- Hero Section - The Crimson Bloom -->
+  <section
+    class="relative h-screen flex items-center justify-center overflow-hidden"
+  >
+    <!-- Background with dramatic hibiscus image -->
+    <div class="absolute inset-0">
+      <img
+        src="/hibiscus.jpg"
+        alt="Vibrant crimson hibiscus flowers"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-rose-900/95 via-rose-900/80 to-rose-900/40"
+      >
+      </div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <!-- Heritage Badge -->
+      <div
+        class="inline-flex items-center gap-3 bg-rose-500/20 backdrop-blur-lg px-6 py-3 rounded-full text-rose-300 text-sm mb-8 border border-rose-500/30"
+      >
+        <span class="relative flex h-3 w-3">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"
+          ></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"
+          ></span>
+        </span>
+        <span>🇰🇪 Kenya Highlands • 100% Sun-Dried</span>
+        <span class="text-white/50 mx-2">•</span>
+        <span>🌺 Since 2018</span>
+      </div>
+
+      <h1
+        class="text-6xl md:text-8xl font-display font-bold text-white leading-tight"
+      >
+        Nature's<br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-500"
+        >
+          Crimson Treasure
+        </span>
+      </h1>
+
+      <p
+        class="mt-6 text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+      >
+        Grown in Kenya's pristine highlands — where cool mountain air,
+        mineral-rich soils, and generations of farming wisdom produce hibiscus
+        calyces of exceptional color, flavor, and antioxidant potency.
+      </p>
+
+      <!-- Color Intensity Scale -->
+      <div class="max-w-2xl mx-auto mt-12">
+        <div class="flex justify-between text-xs text-white/50 mb-2">
+          <span>Pale Pink</span>
+          <span>Light Red</span>
+          <span>Standard Red</span>
+          <span class="text-rose-400 font-bold">Kenyan Crimson</span>
+          <span>Deep Purple</span>
+        </div>
+        <div
+          class="h-3 bg-stone-800/50 rounded-full overflow-hidden backdrop-blur-sm"
+        >
+          <div
+            class="h-full w-3/4 bg-gradient-to-r from-rose-400 via-red-500 to-rose-600 relative"
+            style="width: 85%"
+          >
+            <div
+              class="absolute right-0 top-0 bottom-0 w-1 bg-white animate-pulse"
+            >
+            </div>
+          </div>
+        </div>
+        <p class="text-white/50 text-xs mt-2">
+          Color intensity = anthocyanin content • Our hibiscus tests at 95%+
+          color retention
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-16">
+        <a
+          href="#the-crimson-difference"
+          class="group px-8 py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-semibold rounded-xl hover:from-rose-600 hover:to-pink-700 transition-all shadow-lg shadow-rose-600/20 inline-flex items-center gap-2"
+        >
+          Discover the Difference
+          <svg
+            class="w-5 h-5 group-hover:translate-y-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 14l-7 7-7-7m14-6l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <a
+          href="/contact?quote=true&product=hibiscus"
+          class="px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/50 transition backdrop-blur-sm"
+        >
+          Request Sample
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/40 text-xs tracking-widest"
+    >
+      <span>SCROLL TO DISCOVER</span>
+      <div
+        class="w-px h-16 bg-gradient-to-b from-transparent via-white/30 to-transparent mt-2"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- The Crimson Difference -->
+  <section id="the-crimson-difference" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span
+            class="text-rose-600 font-semibold text-sm tracking-[0.2em] uppercase"
+            >The Crimson Difference</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-display font-bold mt-4 text-stone-900 leading-tight"
+          >
+            Why Kenyan Hibiscus<br />Wears the Crown
+          </h2>
+
+          <div class="space-y-6 mt-8 text-stone-700">
+            <p class="text-lg leading-relaxed">
+              Not all hibiscus is created equal. The <span
+                class="font-bold text-rose-600">Hibiscus sabdariffa</span
+              > variety grown in Kenya's highlands produces calyces with deeper color,
+              more intense flavor, and higher concentrations of anthocyanins — the
+              powerful antioxidants responsible for the deep crimson hue and health
+              benefits.
+            </p>
+            <p class="text-lg leading-relaxed">
+              The secret lies in <span class="font-semibold">terroir</span>:
+              cool nights slow maturation, allowing complex flavor compounds to
+              develop, while intense equatorial sun drives anthocyanin
+              production as the plant's natural protection against UV radiation.
+              The result? A hibiscus that's visually stunning, flavorfully
+              complex, and nutritionally superior.
+            </p>
+          </div>
+
+          <!-- Anthocyanin Comparison -->
+          <div
+            class="mt-10 bg-gradient-to-r from-rose-50 to-pink-50 p-6 rounded-2xl border border-rose-200"
+          >
+            <h3 class="font-bold text-stone-900 mb-4">
+              Anthocyanin Content Comparison
+            </h3>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Standard Hibiscus</span>
+                  <span>100-150 mg/100g</span>
+                </div>
+                <div class="h-3 bg-stone-200 rounded-full">
+                  <div
+                    class="h-full w-[40%] bg-rose-300 rounded-full"
+                    style="width: 40%"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Premium Grade</span>
+                  <span>150-200 mg/100g</span>
+                </div>
+                <div class="h-3 bg-stone-200 rounded-full">
+                  <div
+                    class="h-full w-[60%] bg-rose-400 rounded-full"
+                    style="width: 60%"
+                  >
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="font-bold text-rose-600">🇰🇪 Kenyan Highland</span
+                  >
+                  <span class="font-bold text-rose-600">280-320 mg/100g</span>
+                </div>
+                <div class="h-3 bg-stone-200 rounded-full">
+                  <div
+                    class="h-full w-[95%] bg-rose-600 rounded-full"
+                    style="width: 95%"
+                  >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-stone-500 mt-4">
+              *Independent lab analysis shows 2x higher antioxidant content
+            </p>
+          </div>
+        </div>
+
+        <!-- Terroir Cards -->
+        <div class="space-y-6">
+          <div
+            class="bg-gradient-to-br from-rose-50 to-stone-50 p-8 rounded-2xl border border-rose-200 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div class="flex items-start gap-6">
+              <div class="text-5xl">⛰️</div>
+              <div>
+                <h3 class="text-2xl font-bold text-stone-900 mb-2">
+                  Highland Altitude (1,500-2,000m)
+                </h3>
+                <p class="text-stone-600">
+                  Grown in the cool highlands of Meru and Kiambu, our hibiscus
+                  experiences temperature swings of 15°C between day and night.
+                  This stress triggers anthocyanin production, resulting in
+                  deeper crimson color and higher antioxidant content.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-rose-50 to-stone-50 p-8 rounded-2xl border border-rose-200 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div class="flex items-start gap-6">
+              <div class="text-5xl">🌋</div>
+              <div>
+                <h3 class="text-2xl font-bold text-stone-900 mb-2">
+                  Volcanic Red Soils
+                </h3>
+                <p class="text-stone-600">
+                  Kenya's famous red volcanic soils are rich in iron and trace
+                  minerals. These nutrients are absorbed by the hibiscus plants,
+                  contributing to deeper pigmentation and more complex flavor
+                  profiles.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-rose-50 to-stone-50 p-8 rounded-2xl border border-rose-200 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div class="flex items-start gap-6">
+              <div class="text-5xl">💧</div>
+              <div>
+                <h3 class="text-2xl font-bold text-stone-900 mb-2">
+                  Bimodal Rainfall
+                </h3>
+                <p class="text-stone-600">
+                  Two rainy seasons (March-May and October-December) allow for
+                  two harvests annually, each producing calyces with slightly
+                  different flavor profiles — the long rains crop is more
+                  robust, the short rains crop more delicate.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-rose-50 to-stone-50 p-8 rounded-2xl border border-rose-200 transform hover:scale-105 transition-transform duration-300"
+          >
+            <div class="flex items-start gap-6">
+              <div class="text-5xl">☀️</div>
+              <div>
+                <h3 class="text-2xl font-bold text-stone-900 mb-2">
+                  UV-Rich Equatorial Sun
+                </h3>
+                <p class="text-stone-600">
+                  At the equator, UV intensity is 40% higher than temperate
+                  regions. Hibiscus plants respond by producing more
+                  anthocyanins — nature's sunscreen — resulting in calyces with
+                  exceptional color density.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Flavor Profile -->
+  <section class="py-24 bg-gradient-to-b from-rose-900 to-pink-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-rose-300 font-semibold text-sm tracking-[0.2em] uppercase"
+          >Taste the Highlands</span
+        >
+        <h2 class="text-4xl md:text-5xl font-display font-bold mt-4">
+          A Symphony of Flavor
+        </h2>
+        <p class="text-white/70 text-lg mt-4">
+          Kenyan hibiscus isn't just tart — it's complex. Here's what you'll
+          taste in every cup.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-center"
+        >
+          <div class="text-5xl mb-4">🍒</div>
+          <h3 class="text-xl font-bold mb-3">Cranberry-Cherry</h3>
+          <p class="text-white/70 text-sm">
+            Bright, upfront tartness reminiscent of fresh cranberries with
+            subtle cherry undertones.
+          </p>
+        </div>
+        <div
+          class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-center"
+        >
+          <div class="text-5xl mb-4">🍷</div>
+          <h3 class="text-xl font-bold mb-3">Red Wine Notes</h3>
+          <p class="text-white/70 text-sm">
+            Complex, slightly tannic finish that wine connoisseurs compare to
+            young Cabernet.
+          </p>
+        </div>
+        <div
+          class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-center"
+        >
+          <div class="text-5xl mb-4">🌸</div>
+          <h3 class="text-xl font-bold mb-3">Floral Undertones</h3>
+          <p class="text-white/70 text-sm">
+            Delicate rose and hibiscus blossom notes that linger on the palate.
+          </p>
+        </div>
+        <div
+          class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 text-center"
+        >
+          <div class="text-5xl mb-4">🍊</div>
+          <h3 class="text-xl font-bold mb-3">Citrus Brightness</h3>
+          <p class="text-white/70 text-sm">
+            Hints of orange zest and lemon that balance the deep berry flavors.
+          </p>
+        </div>
+      </div>
+
+      <!-- Brewing Guide -->
+      <div
+        class="mt-16 bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20"
+      >
+        <h3 class="text-2xl font-bold mb-6 text-center">
+          Perfect Brewing Guide
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="text-4xl mb-2">🌡️</div>
+            <div class="font-bold">Temperature</div>
+            <div class="text-white/70">100°C (212°F)</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-2">⏱️</div>
+            <div class="font-bold">Steep Time</div>
+            <div class="text-white/70">5-7 minutes</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-2">🥤</div>
+            <div class="font-bold">Ratio</div>
+            <div class="text-white/70">1 tbsp per cup</div>
+          </div>
+        </div>
+        <p class="text-center text-white/60 text-sm mt-6">
+          For iced tea, double the flowers and steep longer — the flavor
+          intensifies as it chills.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Harvest Story -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span
+            class="text-rose-600 font-semibold text-sm tracking-[0.2em] uppercase"
+            >From Field to Cup</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-display font-bold mt-4 text-stone-900"
+          >
+            The Art of Harvesting Hibiscus
+          </h2>
+
+          <div class="space-y-6 mt-8">
+            <p class="text-lg text-stone-700">
+              Unlike other crops, hibiscus requires <span
+                class="font-bold text-rose-600">perfect timing</span
+              >. The calyces — the fleshy red part surrounding the seed pod —
+              must be harvested at exactly the right moment: not too early
+              (pale, underdeveloped flavor), not too late (woody, less vibrant).
+            </p>
+            <p class="text-lg text-stone-700">
+              Our farmers harvest by hand, selecting only the deepest crimson
+              calyces. Each plant is visited multiple times during the season,
+              as flowers mature at different rates. This labor-intensive process
+              ensures every calyx meets our export standards.
+            </p>
+          </div>
+
+          <!-- Harvest Calendar -->
+          <div class="mt-10 grid grid-cols-2 gap-4">
+            <div class="bg-rose-50 p-4 rounded-xl">
+              <div class="text-2xl font-bold text-rose-600">March-May</div>
+              <div class="text-sm text-stone-600">
+                Long Rains Harvest<br />Bolder, more robust
+              </div>
+            </div>
+            <div class="bg-rose-50 p-4 rounded-xl">
+              <div class="text-2xl font-bold text-rose-600">Oct-Dec</div>
+              <div class="text-sm text-stone-600">
+                Short Rains Harvest<br />Delicate, floral notes
+              </div>
+            </div>
+          </div>
+
+          <!-- Farmer Quote -->
+          <div
+            class="mt-10 bg-rose-50 p-6 rounded-2xl border-l-4 border-rose-500"
+          >
+            <p class="text-stone-700 italic">
+              "You have to wake before dawn. The calyzes are most vibrant in the
+              early morning light. My grandmother taught me: 'If it bleeds like
+              wine, it's time. If it's pale like water, wait another week.'"
+            </p>
+            <p class="mt-4 font-semibold text-stone-900">— Njoki Wambui</p>
+            <p class="text-sm text-stone-500">
+              Hibiscus farmer, Meru County • 3rd generation
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <img
+            src="https://images.unsplash.com/photo-1629819109533-9d0fb5b6c972?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            alt="Fresh hibiscus harvest"
+            class="rounded-2xl shadow-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1563911892437-1feda0179e1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            alt="Drying hibiscus"
+            class="rounded-2xl shadow-xl w-full h-64 object-cover mt-8"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Drying Process -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-rose-600 font-semibold text-sm tracking-[0.2em] uppercase"
+          >Traditional Methods</span
+        >
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold mt-4 text-stone-900"
+        >
+          Sun-Dried with Care
+        </h2>
+        <p class="text-stone-600 text-lg mt-4">
+          Mechanical drying destroys color and flavor. Our hibiscus is slowly
+          dried under the sun, a traditional process that preserves the deep
+          crimson hue and delicate flavor compounds.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+          <div class="text-5xl mb-4 text-rose-500">☀️</div>
+          <h3 class="text-xl font-bold mb-3">5-7 Days in Sun</h3>
+          <p class="text-stone-600">
+            Spread on raised mesh racks for maximum airflow. Turned twice daily
+            for even drying.
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+          <div class="text-5xl mb-4 text-rose-500">🌙</div>
+          <h3 class="text-xl font-bold mb-3">Night Coverage</h3>
+          <p class="text-stone-600">
+            Protected from dew and overnight moisture to prevent mold and color
+            degradation.
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+          <div class="text-5xl mb-4 text-rose-500">👐</div>
+          <h3 class="text-xl font-bold mb-3">Hand-Sorted</h3>
+          <p class="text-stone-600">
+            Each batch is hand-sorted by our women's cooperative — removing
+            stems, seeds, and any imperfect calyces.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-rose-600 text-white p-8 rounded-2xl">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <h4 class="text-xl font-bold mb-2">Moisture Content: ≤12%</h4>
+            <p class="text-rose-100">
+              Perfect for long-term storage without mold or quality loss
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-2">Color Retention: 95%+</h4>
+            <p class="text-rose-100">
+              Sun-drying preserves the vibrant crimson color buyers expect
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-2">Shelf Life: 24 months</h4>
+            <p class="text-rose-100">When stored in cool, dry conditions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Benefits -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-rose-600 font-semibold text-sm tracking-[0.2em] uppercase"
+          >Nature's Pharmacy</span
+        >
+        <h2
+          class="text-4xl md:text-5xl font-display font-bold mt-4 text-stone-900"
+        >
+          More Than Just a Pretty Flower
+        </h2>
+        <p class="text-stone-600 text-lg mt-4">
+          Hibiscus has been used in traditional African medicine for centuries.
+          Modern science confirms what our grandmothers knew.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-6">
+          <div class="text-4xl mb-3">❤️</div>
+          <h3 class="font-bold text-stone-900 mb-2">Heart Health</h3>
+          <p class="text-sm text-stone-600">
+            Studies show hibiscus tea may help maintain healthy blood pressure
+            levels.
+          </p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-3">🛡️</div>
+          <h3 class="font-bold text-stone-900 mb-2">Antioxidant Rich</h3>
+          <p class="text-sm text-stone-600">
+            High in anthocyanins and flavonoids that combat oxidative stress.
+          </p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-3">⚡</div>
+          <h3 class="font-bold text-stone-900 mb-2">Vitamin C</h3>
+          <p class="text-sm text-stone-600">
+            Natural source of immune-supporting vitamin C.
+          </p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-3">🌡️</div>
+          <h3 class="font-bold text-stone-900 mb-2">Cooling Properties</h3>
+          <p class="text-sm text-stone-600">
+            Traditionally consumed as a refreshing, cooling beverage in hot
+            climates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Forms -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-stone-900">
+          Choose Your Form
+        </h2>
+        <p class="text-stone-600 text-lg mt-4">
+          We offer Kenyan hibiscus in multiple formats to suit your
+          manufacturing, blending, or retail needs.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Whole Flowers -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition border border-stone-200"
+        >
+          <div class="h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1629819109533-9d0fb5b6c972?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Whole dried hibiscus flowers"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-stone-900 mb-3">
+              Whole Flowers
+            </h3>
+            <p class="text-stone-600 mb-4">
+              Premium whole calyces, stems and seeds removed. Perfect for tea
+              blends, retail packaging, and beverage manufacturing.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex justify-between">
+                <span class="text-stone-500">MOQ:</span><span
+                  class="font-medium">25kg</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Packaging:</span><span
+                  class="font-medium">Food-grade bags</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Color Value:</span><span
+                  class="font-bold text-rose-600">Deep Crimson</span
+                >
+              </div>
+            </div>
+            <a
+              href="/contact?product=hibiscus-whole"
+              class="block text-center bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3 px-4 rounded-xl transition"
+            >
+              Request Quote
+            </a>
+          </div>
+        </div>
+
+        <!-- Hibiscus Powder -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition border border-stone-200"
+        >
+          <div class="h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1597481495646-7a69a6033b6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Hibiscus powder"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-stone-900 mb-3">Fine Powder</h3>
+            <p class="text-stone-600 mb-4">
+              Finely ground powder with intense color. Ideal for natural food
+              coloring, instant beverage mixes, and cosmetic applications.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex justify-between">
+                <span class="text-stone-500">MOQ:</span><span
+                  class="font-medium">25kg</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Grind Size:</span><span
+                  class="font-medium">60-80 mesh</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Color:</span><span
+                  class="font-bold text-rose-600">Vibrant Red</span
+                >
+              </div>
+            </div>
+            <a
+              href="/contact?product=hibiscus-powder"
+              class="block text-center bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3 px-4 rounded-xl transition"
+            >
+              Request Quote
+            </a>
+          </div>
+        </div>
+
+        <!-- Tea Cuts -->
+        <div
+          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition border border-stone-200"
+        >
+          <div class="h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1563911892437-1feda0179e1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+              alt="Hibiscus tea cuts"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-stone-900 mb-3">Tea Cuts</h3>
+            <p class="text-stone-600 mb-4">
+              Coarsely cut, optimized for tea bags. Consistent particle size for
+              even infusion and maximum extraction.
+            </p>
+            <div class="space-y-2 mb-6">
+              <div class="flex justify-between">
+                <span class="text-stone-500">MOQ:</span><span
+                  class="font-medium">25kg</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Cut Size:</span><span
+                  class="font-medium">2-4mm</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span class="text-stone-500">Extraction:</span><span
+                  class="font-bold text-rose-600">Superior</span
+                >
+              </div>
+            </div>
+            <a
+              href="/contact?product=hibiscus-tea"
+              class="block text-center bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3 px-4 rounded-xl transition"
+            >
+              Request Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lab Results -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="bg-rose-50 p-8 rounded-2xl shadow-lg border border-rose-200">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-8"
+        >
+          <div>
+            <h3 class="text-2xl font-bold text-stone-900 mb-2">
+              Certificate of Analysis
+            </h3>
+            <p class="text-stone-600">
+              Independent lab verification of color, purity, and safety.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <div class="text-sm text-stone-500">Anthocyanins</div>
+              <div class="font-bold text-rose-600">305 mg/100g</div>
+            </div>
+            <div>
+              <div class="text-sm text-stone-500">Moisture</div>
+              <div class="font-bold">10.2%</div>
+            </div>
+            <div>
+              <div class="text-sm text-stone-500">Aflatoxins</div>
+              <div class="font-bold text-green-600">Not Detected</div>
+            </div>
+            <div>
+              <div class="text-sm text-stone-500">Pesticides</div>
+              <div class="font-bold text-green-600">Not Detected</div>
+            </div>
+          </div>
+          <a
+            href="#"
+            class="text-rose-600 hover:text-rose-700 font-medium flex items-center gap-2"
+          >
+            Download PDF
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-24 bg-gradient-to-br from-rose-600 to-pink-600 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6">
+      <span
+        class="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-white text-sm mb-8"
+      >
+        🌺 Premium • Organic • Traceable
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold mb-6">
+        Bring the Crimson Treasure to Your Market
+      </h2>
+      <p class="text-xl text-white/90 mb-10">
+        From sample packs to container loads — we deliver Kenya's finest
+        hibiscus to your door.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/contact?quote=true&product=hibiscus"
+          class="bg-white text-rose-600 hover:bg-rose-50 px-8 py-4 rounded-xl font-semibold transition shadow-lg"
+        >
+          Request Hibiscus Quote
+        </a>
+        <a
+          href="/contact?samples=true&product=hibiscus"
+          class="border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-xl font-semibold transition"
+        >
+          Order Samples
+        </a>
+      </div>
+      <p class="text-sm text-white/70 mt-8">
+        Lab reports, technical specs, and export documentation included with
+        every shipment.
+      </p>
+    </div>
+  </section>
+</Layout>
