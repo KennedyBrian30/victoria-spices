@@ -1,860 +1,758 @@
 ---
+// ─── NO image pipeline calls in this file ───────────────────────────────────
+// All images are served straight from /public via plain <img> or CSS url().
+// Unsplash serves its own CDN-optimised WebP via query params.
+// This keeps build time under 10 seconds locally and under Vercel's limits.
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Victoria Herbs & Spices | Premium Kenyan Herbs & Spices – Exported Worldwide"
+  title="Victoria Agribusiness Ltd. | Premium Kenyan Herbs & Spices – Exported Worldwide"
   description="Traceable, sustainably sourced Kenyan herbs and spices direct from our farms to Europe, USA, and Canada. Organic, pure, and full of flavour."
   ogImage="/chilli.jpg"
 >
-  <!-- HERO SECTION - More dramatic and compelling -->
-  <section
-    class="relative h-screen flex items-center justify-center overflow-hidden"
-  >
-    <!-- Background with parallax effect -->
+
+  <style>
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scroll-line {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .animate-fade-up { animation: fade-up 0.7s ease both; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-700 { animation-delay: 0.7s; }
+    .delay-900 { animation-delay: 0.9s; }
+    .scroll-line { animation: scroll-line 2s ease-in-out infinite; }
+
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .stat-card:hover .stat-value { color: #d97706; transition: color 0.2s ease; }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    .product-card:hover::before { transform: translateX(100%); }
+
+    .diagonal-top    { clip-path: polygon(0 4%, 100% 0%, 100% 100%, 0% 100%); margin-top: -3%; }
+    .diagonal-bottom { clip-path: polygon(0 0%, 100% 0%, 100% 96%, 0% 100%); padding-bottom: 6%; }
+
+    .form-field:focus {
+      outline: none;
+      border-color: #d97706;
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.15);
+    }
+  </style>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO                                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden grain">
     <div class="absolute inset-0">
+      <!-- Unsplash CDN handles its own WebP/compression — no local processing needed -->
       <div
-        class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center bg-fixed"
-      >
-      </div>
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black/90"
-      >
-      </div>
+        class="absolute inset-0 bg-cover bg-center bg-fixed"
+        style="background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=70&fm=webp')"
+      ></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/65 to-stone-950/95"></div>
+      <div class="absolute inset-0 bg-gradient-to-tr from-amber-950/30 via-transparent to-transparent"></div>
     </div>
 
     <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-      <!-- Animated badge -->
-      <div
-        class="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-lg px-6 py-3 rounded-full text-amber-300 text-sm mb-8 border border-amber-500/30 animate-fade-in"
-      >
-        <span class="relative flex h-2 w-2">
-          <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"
-          ></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"
-          ></span>
+      <div class="animate-fade-up inline-flex items-center gap-2.5 bg-amber-500/15 backdrop-blur-xl px-5 py-2.5 rounded-full text-amber-300 text-sm mb-8 border border-amber-400/25 shadow-lg">
+        <span aria-hidden="true" class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
         </span>
-        🌍 Direct from Kenya • Exporting to 15+ Countries
+        <span aria-hidden="true">🌍</span> Direct from Kenya &nbsp;•&nbsp; Exporting to 15+ Countries
       </div>
 
-      <h1
-        class="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-tight tracking-tight"
-      >
+      <h1 class="animate-fade-up delay-200 text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-[1.05] tracking-tight">
         Taste the<br />
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400"
-        >
-          Heart of Kenya
-        </span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400">Heart of Kenya</span>
       </h1>
 
-      <p
-        class="mt-6 text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
-      >
-        From our family of farmers to your global kitchen — premium herbs and
-        spices, sustainably grown, ethically sourced, and bursting with
-        authentic Kenyan flavor.
+      <p class="animate-fade-up delay-300 mt-6 text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed font-light">
+        From our family of farmers to your global kitchen — premium herbs and spices, sustainably grown, ethically sourced, and bursting with authentic Kenyan flavour.
       </p>
 
-      <!-- Value proposition badges -->
-      <div class="flex flex-wrap justify-center gap-4 mt-10">
-        <span
-          class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm border border-white/20"
-        >
-          🌱 100% Traceable
-        </span>
-        <span
-          class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm border border-white/20"
-        >
-          ✅ ISO 22000 Certified
-        </span>
-        <span
-          class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/90 text-sm border border-white/20"
-        >
-          ✈️ Global Shipping
-        </span>
+      <div class="animate-fade-up delay-500 flex flex-wrap justify-center gap-3 mt-9">
+        <span class="bg-white/8 backdrop-blur-md px-4 py-2 rounded-full text-white/85 text-sm border border-white/15 shadow-sm"><span aria-hidden="true">🌱</span> 100% Traceable</span>
+        <span class="bg-white/8 backdrop-blur-md px-4 py-2 rounded-full text-white/85 text-sm border border-white/15 shadow-sm"><span aria-hidden="true">✅</span> ISO 22000 Certified</span>
+        <span class="bg-white/8 backdrop-blur-md px-4 py-2 rounded-full text-white/85 text-sm border border-white/15 shadow-sm"><span aria-hidden="true">✈️</span> Global Shipping</span>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-12">
-        <a
-          href="/products"
-          class="group px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-2xl hover:from-amber-600 hover:to-orange-600 transition-all text-lg shadow-xl shadow-orange-500/20 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-400 inline-flex items-center gap-2"
-        >
+      <div class="animate-fade-up delay-700 flex flex-col sm:flex-row gap-4 justify-center mt-11">
+        <a href="/products" class="group px-9 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-2xl hover:from-amber-400 hover:to-orange-400 transition-all text-base shadow-xl shadow-orange-600/25 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2">
           Explore Our Products
-          <svg
-            class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <a
-          href="/contact?quote=true"
-          class="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-2xl hover:bg-white/10 hover:border-white/50 transition-all text-lg backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white/50"
-        >
+        <a href="#contact" class="px-9 py-4 border border-white/25 text-white font-medium rounded-2xl hover:bg-white/8 hover:border-white/40 transition-all text-base backdrop-blur-sm inline-flex items-center justify-center">
           Request Export Quote
         </a>
       </div>
 
-      <!-- Trusted by badge -->
-      <div class="mt-16 text-white/50 text-sm tracking-wider">
-        TRUSTED BY IMPORTERS IN
-      </div>
-      <div
-        class="flex justify-center gap-8 mt-4 text-white/80 text-xl font-display"
-      >
-        <span>🇩🇪 Germany</span>
-        <span>🇺🇸 USA</span>
-        <span>🇨🇦 Canada</span>
-        <span>🇳🇱 Netherlands</span>
+      <div class="animate-fade-up delay-900 mt-14">
+        <p class="text-white/35 text-[11px] tracking-[0.25em] uppercase mb-3">Trusted by importers in</p>
+        <div class="flex justify-center gap-6 text-white/70 text-base font-medium">
+          <span><span aria-hidden="true">🇩🇪</span> Germany</span>
+          <span><span aria-hidden="true">🇺🇸</span> USA</span>
+          <span><span aria-hidden="true">🇨🇦</span> Canada</span>
+          <span><span aria-hidden="true">🇳🇱</span> Netherlands</span>
+        </div>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/40 text-xs tracking-widest"
-    >
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-[10px] tracking-[0.3em]" aria-hidden="true">
       <span>SCROLL</span>
-      <div
-        class="w-px h-16 bg-gradient-to-b from-transparent via-white/30 to-transparent mt-2"
-      >
-      </div>
+      <div class="w-px h-12 bg-gradient-to-b from-white/30 to-transparent scroll-line"></div>
     </div>
   </section>
 
-  <!-- STATS BANNER - Social proof -->
-  <div class="bg-amber-50 py-12 border-y border-amber-100">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <div class="text-3xl md:text-4xl font-bold text-amber-600">500+</div>
-          <div class="text-sm text-stone-600 mt-2">Partner Farmers</div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- STATS BANNER                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="bg-amber-600 py-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="stat-card group cursor-default">
+          <div class="stat-value text-3xl md:text-4xl font-bold text-white group-hover:scale-110 transition-transform duration-200">1,360+</div>
+          <div class="text-amber-100/80 text-sm mt-1.5 font-medium">Partner Farmers</div>
         </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-bold text-amber-600">15+</div>
-          <div class="text-sm text-stone-600 mt-2">Export Countries</div>
+        <div class="stat-card group cursor-default">
+          <div class="stat-value text-3xl md:text-4xl font-bold text-white group-hover:scale-110 transition-transform duration-200">15+</div>
+          <div class="text-amber-100/80 text-sm mt-1.5 font-medium">Export Countries</div>
         </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-bold text-amber-600">97%</div>
-          <div class="text-sm text-stone-600 mt-2">Client Retention</div>
+        <div class="stat-card group cursor-default">
+          <div class="stat-value text-3xl md:text-4xl font-bold text-white group-hover:scale-110 transition-transform duration-200">97%</div>
+          <div class="text-amber-100/80 text-sm mt-1.5 font-medium">Client Retention</div>
         </div>
-        <div>
-          <div class="text-3xl md:text-4xl font-bold text-amber-600">24h</div>
-          <div class="text-sm text-stone-600 mt-2">Quote Response</div>
+        <div class="stat-card group cursor-default">
+          <div class="stat-value text-3xl md:text-4xl font-bold text-white group-hover:scale-110 transition-transform duration-200">24h</div>
+          <div class="text-amber-100/80 text-sm mt-1.5 font-medium">Quote Response</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- OUR STORY - More emotional and compelling -->
-  <section id="story" class="py-24 md:py-32 bg-white">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- OUR STORY                                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="story" class="py-28 md:py-36 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <span
-            class="text-amber-600 font-semibold text-sm tracking-[0.2em] uppercase"
-            >Our Heritage</span
-          >
-          <h2
-            class="text-4xl md:text-5xl font-display font-bold mt-4 leading-tight"
-          >
-            Crafting Excellence<br />
-            <span class="text-amber-600">for Three Generations</span>
-          </h2>
+      <div class="max-w-3xl">
+        <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Our Heritage</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold mt-4 leading-tight text-stone-900">
+          Crafting Excellence<br />
+          <span class="text-amber-600">for Three Generations</span>
+        </h2>
 
-          <div class="space-y-6 mt-8 text-stone-700 text-lg">
-            <p class="leading-relaxed">
-              In the fertile highlands of Kenya, where the soil is rich and the
-              sun is generous, our story began. For over 60 years, we've
-              partnered with local farming families who have passed down their
-              knowledge of when to harvest, how to dry, and what makes a truly
-              exceptional spice.
-            </p>
-            <p class="leading-relaxed">
-              Today, Victoria Herbs & Spices bridges this heritage with global
-              demand. Every moringa leaf, every chilli, every hibiscus flower
-              tells the story of Kenyan soil, Kenyan hands, and Kenyan pride —
-              delivered to your market with full traceability and uncompromising
-              quality.
-            </p>
-          </div>
-
-          <!-- Farmer testimonial -->
-          <div
-            class="mt-10 p-6 bg-amber-50/50 rounded-2xl border border-amber-100"
-          >
-            <div class="flex items-start gap-4">
-              <div class="text-5xl">👩🏾‍🌾</div>
-              <div>
-                <p class="text-stone-700 italic">
-                  "Victoria pays fair prices and treats us as partners. My
-                  children now have better schools, and our community is
-                  thriving."
-                </p>
-                <p class="text-sm text-stone-500 mt-2">
-                  — Grace Wanjiku, Smallholder Farmer, Meru
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <a
-            href="/story"
-            class="inline-flex items-center gap-2 mt-10 text-amber-600 hover:text-amber-700 font-semibold group"
-          >
-            Read Our Full Story
-            <svg
-              class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </a>
+        <div class="space-y-5 mt-8 text-stone-600 text-lg leading-relaxed">
+          <p>In the fertile highlands of Kenya, our story began. The soils are rich and generous, and for over 60 years, we've partnered with local farming families who have passed down their knowledge — of when to harvest, how to dry, and what makes a truly exceptional spice.</p>
+          <p>Today, Victoria Agribusiness Ltd. bridges this heritage with global demand. Every moringa leaf, every chilli, every hibiscus flower tells the story of Kenyan soil, Kenyan hands, and Kenyan pride — delivered to your market with full traceability and uncompromising quality.</p>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-          <div class="space-y-4">
-            <img
-              src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80"
-              alt="Kenyan farmer harvesting herbs"
-              class="rounded-2xl shadow-xl w-full h-64 object-cover"
-              loading="lazy"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-              alt="Fresh moringa harvest"
-              class="rounded-2xl shadow-xl w-full h-48 object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div class="space-y-4 mt-8">
-            <img
-              src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-              alt="Sun-drying spices traditionally"
-              class="rounded-2xl shadow-xl w-full h-48 object-cover"
-              loading="lazy"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1629819109533-9d0fb5b6c972?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-              alt="Quality inspection"
-              class="rounded-2xl shadow-xl w-full h-64 object-cover"
-              loading="lazy"
-            />
-          </div>
+        <div class="flex items-center gap-4 mt-10 mb-10">
+          <div class="h-px flex-1 bg-amber-100"></div>
+          <span aria-hidden="true" class="text-amber-400 text-lg">✦</span>
+          <div class="h-px flex-1 bg-amber-100"></div>
+        </div>
+
+        <blockquote class="pl-6 border-l-4 border-amber-400">
+          <p class="text-stone-700 text-xl italic leading-relaxed font-light">
+            "Victoria pays fair prices and treats us as partners. My children now have better schools, and our community is thriving."
+          </p>
+          <footer class="mt-4 flex items-center gap-3">
+            <span aria-hidden="true" class="text-2xl">👩🏾‍🌾</span>
+            <cite class="not-italic text-sm text-stone-400 font-medium">Grace Wanjiku — Smallholder Moringa Farmer, Meru, Kenya</cite>
+          </footer>
+        </blockquote>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-10">
+          <a href="/story" class="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold group text-base">
+            Read Our Full Story
+            <svg class="w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md">
+            <span aria-hidden="true">📩</span> Request a Quote
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURED PRODUCTS - Enhanced with better copy and hover effects -->
-  <section class="py-24 md:py-32 bg-gradient-to-b from-stone-50 to-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span
-          class="text-amber-600 font-semibold text-sm tracking-[0.2em] uppercase"
-          >Our Signature Range</span
-        >
-        <h2 class="text-4xl md:text-5xl font-display font-bold mt-4">
-          Flagship Exports
-        </h2>
-        <p class="text-stone-600 text-lg mt-4">
-          Hand-selected, sun-dried, and sorted to perfection — these three
-          products represent the best of Kenyan agriculture, trusted by
-          importers worldwide.
-        </p>
-      </div>
 
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
-        <!-- Moringa -->
-        <a
-          href="/products/moringa"
-          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div class="relative h-72 overflow-hidden">
-            <div
-              class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-              style="background-image: url('https://images.unsplash.com/photo-1615485290382-441e4d049cb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
-            >
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FARMER SECTION                              -->
+  <!-- Plain <img> — no Astro pipeline             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-20 md:py-24 bg-stone-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src="/farmer.jpg"
+              alt="Kenyan smallholder farmer working in the field"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              width="800"
+              height="600"
+            />
+          </div>
+          <div class="absolute -bottom-5 -right-4 sm:right-8 bg-amber-600 text-white px-6 py-4 rounded-2xl shadow-xl shadow-amber-700/30">
+            <div class="text-3xl font-bold leading-none">1,360</div>
+            <div class="text-amber-100 text-xs mt-1 font-medium tracking-wide">Partner Farmers</div>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Our Farming Community</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mt-4 leading-tight text-stone-900">
+            From Smallholder Farmers<br />
+            <span class="text-amber-600">to Global Markets</span>
+          </h2>
+          <p class="mt-6 text-stone-600 text-lg leading-relaxed">
+            We work hand-in-hand with <strong class="text-stone-800 font-semibold">1,360 smallholder farmers</strong> spread across Kenya's diverse growing regions — from the highlands of Meru to the fertile plains of the Rift Valley.
+          </p>
+          <p class="mt-4 text-stone-500 leading-relaxed">
+            Our produce reaches <strong class="text-stone-700 font-medium">local supermarkets</strong> and <strong class="text-stone-700 font-medium">hotels</strong> across Kenya, as well as <strong class="text-stone-700 font-medium">global markets</strong> in Europe, Asia, and North America.
+          </p>
+
+          <div class="grid grid-cols-3 gap-4 mt-10">
+            <div class="text-center p-4 bg-white rounded-2xl border border-stone-100 shadow-sm">
+              <div aria-hidden="true" class="text-3xl mb-2">🏪</div>
+              <div class="text-xs text-stone-500 font-medium leading-snug">Local Supermarkets</div>
             </div>
-            <div
-              class="absolute top-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-full text-xs font-semibold"
-            >
-              Best Seller
+            <div class="text-center p-4 bg-white rounded-2xl border border-stone-100 shadow-sm">
+              <div aria-hidden="true" class="text-3xl mb-2">🏨</div>
+              <div class="text-xs text-stone-500 font-medium leading-snug">Hotels & Hospitality</div>
+            </div>
+            <div class="text-center p-4 bg-white rounded-2xl border border-stone-100 shadow-sm">
+              <div aria-hidden="true" class="text-3xl mb-2">✈️</div>
+              <div class="text-xs text-stone-500 font-medium leading-snug">Global Export</div>
             </div>
           </div>
-          <div class="p-8">
-            <div class="flex justify-between items-start mb-3">
-              <h3
-                class="text-2xl font-bold text-stone-900 group-hover:text-amber-700 transition"
-              >
-                Moringa
-              </h3>
-              <span class="text-3xl">🌿</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FEATURED PRODUCTS                           -->
+  <!-- CSS bg-image from /public — no pipeline     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="diagonal-top diagonal-bottom py-24 md:py-32 bg-gradient-to-b from-stone-50 to-amber-50/30">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Our Signature Range</span>
+        <h2 class="text-4xl md:text-5xl font-display font-bold mt-4 text-stone-900">Flagship Exports</h2>
+        <p class="text-stone-500 text-lg mt-4 leading-relaxed">Hand-selected, sun-dried, and sorted to perfection — trusted by importers worldwide.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Moringa -->
+        <a href="/products/moringa"
+          aria-label="Moringa — Premium Grade A organic leaf powder. View product details."
+          class="product-card group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400">
+          <div class="relative h-64 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style="background-image: url('/moringa.jpg')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">Best Seller</span>
+          </div>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Moringa</h3>
+              <span aria-hidden="true" class="text-2xl">🌿</span>
             </div>
-            <p class="text-stone-600 leading-relaxed">
-              <span class="font-semibold text-amber-700"
-                >The "Miracle Tree"</span
-              > — our organic moringa leaf powder contains 25+ vitamins and minerals.
-              Perfect for health supplements, smoothies, and functional foods.
+            <p class="text-stone-500 text-sm leading-relaxed">
+              <span class="font-semibold text-amber-600">The "Miracle Tree"</span> — organic leaf powder with 25+ vitamins and minerals. Perfect for supplements, smoothies, and functional foods.
             </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >Organic</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >MOQ: 500kg</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >High Curcumin</span
-              >
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">Organic</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">MOQ: 500kg</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">High Curcumin</span>
             </div>
-            <div
-              class="mt-6 flex justify-between items-center pt-4 border-t border-stone-100"
-            >
-              <span class="text-sm text-stone-500">Premium Grade A</span>
-              <span
-                class="text-amber-600 font-medium group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-              >
-                Learn More
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
+            <div class="mt-5 flex justify-between items-center pt-4 border-t border-stone-100">
+              <span class="text-xs text-stone-400 font-medium uppercase tracking-wider">Premium Grade A</span>
+              <span aria-hidden="true" class="text-amber-600 font-medium group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1 text-sm">
+                Learn More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </span>
             </div>
           </div>
         </a>
 
         <!-- Chilli -->
-        <a
-          href="/products/chilli"
-          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div class="relative h-72 overflow-hidden">
-            <div
-              class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-              style="background-image: url('https://images.unsplash.com/photo-1594232202007-3477c8ac1b1c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
-            >
-            </div>
-            <div
-              class="absolute top-4 right-4 bg-orange-600 text-white px-4 py-2 rounded-full text-xs font-semibold"
-            >
-              Hot & Spicy
-            </div>
+        <a href="/products/chilli"
+          aria-label="African Bird's Eye Chilli — Premium Grade, 80,000–100,000 SHU. View product details."
+          class="product-card group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400">
+          <div class="relative h-64 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style="background-image: url('/chilli.jpg')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">Hot & Spicy</span>
           </div>
-          <div class="p-8">
-            <div class="flex justify-between items-start mb-3">
-              <h3
-                class="text-2xl font-bold text-stone-900 group-hover:text-amber-700 transition"
-              >
-                African Bird's Eye Chilli
-              </h3>
-              <span class="text-3xl">🌶️</span>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-stone-900 group-hover:text-amber-700 transition-colors">African Bird's Eye Chilli</h3>
+              <span aria-hidden="true" class="text-2xl">🌶️</span>
             </div>
-            <p class="text-stone-600 leading-relaxed">
-              <span class="font-semibold text-amber-700"
-                >80,000-100,000 SHU</span
-              > — these fiery chillies are sun-dried to preserve their intense heat
-              and complex flavor. Sought after by spice blenders and sauce makers
-              worldwide.
+            <p class="text-stone-500 text-sm leading-relaxed">
+              <span class="font-semibold text-amber-600">80,000–100,000 SHU</span> — sun-dried to preserve intense heat and complex flavour. Sought after by spice blenders and sauce makers worldwide.
             </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >Non-GMO</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >MOQ: 500kg</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >Hand-Sorted</span
-              >
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">Non-GMO</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">MOQ: 500kg</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">Hand-Sorted</span>
             </div>
-            <div
-              class="mt-6 flex justify-between items-center pt-4 border-t border-stone-100"
-            >
-              <span class="text-sm text-stone-500">Premium Grade</span>
-              <span
-                class="text-amber-600 font-medium group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-              >
-                Learn More
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
+            <div class="mt-5 flex justify-between items-center pt-4 border-t border-stone-100">
+              <span class="text-xs text-stone-400 font-medium uppercase tracking-wider">Premium Grade</span>
+              <span aria-hidden="true" class="text-amber-600 font-medium group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1 text-sm">
+                Learn More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </span>
             </div>
           </div>
         </a>
 
         <!-- Hibiscus -->
-        <a
-          href="/products/hibiscus"
-          class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div class="relative h-72 overflow-hidden">
-            <div
-              class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-              style="background-image: url('https://images.unsplash.com/photo-1629819109533-9d0fb5b6c972?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
-            >
-            </div>
-            <div
-              class="absolute top-4 right-4 bg-rose-600 text-white px-4 py-2 rounded-full text-xs font-semibold"
-            >
-              Trending
-            </div>
+        <a href="/products/hibiscus"
+          aria-label="Hibiscus Flowers — Grade A dried calyces for teas and beverages. View product details."
+          class="product-card group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-amber-400">
+          <div class="relative h-64 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style="background-image: url('/hibiscus.jpg')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <span class="absolute top-4 right-4 bg-rose-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">Trending</span>
           </div>
-          <div class="p-8">
-            <div class="flex justify-between items-start mb-3">
-              <h3
-                class="text-2xl font-bold text-stone-900 group-hover:text-amber-700 transition"
-              >
-                Hibiscus Flowers
-              </h3>
-              <span class="text-3xl">🌺</span>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Hibiscus Flowers</h3>
+              <span aria-hidden="true" class="text-2xl">🌺</span>
             </div>
-            <p class="text-stone-600 leading-relaxed">
-              <span class="font-semibold text-amber-700"
-                >Deep crimson calyces</span
-              > with a naturally tart, cranberry-like flavor. Perfect for herbal
-              teas, beverages, and natural food coloring. Grown in Kenya's highlands.
+            <p class="text-stone-500 text-sm leading-relaxed">
+              <span class="font-semibold text-amber-600">Deep crimson calyces</span> with a naturally tart, cranberry-like flavour. Ideal for herbal teas, beverages, and natural food colouring.
             </p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >Organic</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >MOQ: 300kg</span
-              >
-              <span
-                class="bg-amber-50 text-amber-800 px-3 py-1 rounded-full text-xs font-medium"
-                >Dried</span
-              >
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">Organic</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">MOQ: 300kg</span>
+              <span class="bg-amber-50 text-amber-700 border border-amber-100 px-2.5 py-1 rounded-full text-xs font-medium">Dried</span>
             </div>
-            <div
-              class="mt-6 flex justify-between items-center pt-4 border-t border-stone-100"
-            >
-              <span class="text-sm text-stone-500">Grade A</span>
-              <span
-                class="text-amber-600 font-medium group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-              >
-                Learn More
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
+            <div class="mt-5 flex justify-between items-center pt-4 border-t border-stone-100">
+              <span class="text-xs text-stone-400 font-medium uppercase tracking-wider">Grade A</span>
+              <span aria-hidden="true" class="text-amber-600 font-medium group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1 text-sm">
+                Learn More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               </span>
             </div>
           </div>
         </a>
+
       </div>
 
-      <div class="text-center mt-16">
-        <a
-          href="/products"
-          class="inline-flex items-center gap-2 px-10 py-4 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-xl transition-all shadow-lg hover:shadow-xl"
-        >
-          Browse Complete Product Catalog
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
+      <div class="text-center mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/products" class="inline-flex items-center gap-2 px-9 py-4 bg-stone-900 hover:bg-amber-600 text-white font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+          Browse Complete Catalog
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-9 py-4 border-2 border-amber-500 text-amber-700 hover:bg-amber-50 font-medium rounded-xl transition-all duration-200">
+          Request Samples
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- GLOBAL MARKETS - Interactive cards with links -->
-  <section class="py-24 md:py-32 bg-white">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- GLOBAL MARKETS                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-20 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span
-          class="text-amber-600 font-semibold text-sm tracking-[0.2em] uppercase"
-          >Global Presence</span
-        >
-        <h2 class="text-4xl md:text-5xl font-display font-bold mt-4">
-          Serving Markets Across Three Continents
-        </h2>
-        <p class="text-stone-600 text-lg mt-4">
-          We've built lasting partnerships with importers, distributors, and
-          food manufacturers in key markets — meeting and exceeding local
-          regulatory requirements.
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Global Presence</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-stone-900 leading-tight">Serving Three<br class="hidden sm:block" />Continents</h2>
+        </div>
+        <a href="/markets" class="shrink-0 inline-flex items-center gap-2 text-sm text-amber-600 hover:text-amber-700 font-semibold group">
+          View All Markets
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <a href="/markets/asia" class="group flex items-center gap-4 p-5 rounded-2xl border border-stone-100 hover:border-amber-200 hover:bg-amber-50/40 transition-all duration-200 hover:shadow-md">
+          <span aria-hidden="true" class="text-5xl shrink-0 group-hover:scale-110 transition-transform duration-200">🌏</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Asia</h3>
+            <p class="text-xs text-stone-400 mt-0.5 truncate">Japan · China · UAE · India · Singapore</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ JETRO</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ Halal</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ Singapore Hub</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/markets/europe" class="group flex items-center gap-4 p-5 rounded-2xl border border-stone-100 hover:border-amber-200 hover:bg-amber-50/40 transition-all duration-200 hover:shadow-md">
+          <span aria-hidden="true" class="text-5xl shrink-0 group-hover:scale-110 transition-transform duration-200">🇪🇺</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Europe</h3>
+            <p class="text-xs text-stone-400 mt-0.5 truncate">Germany · Netherlands · UK · France · Scandinavia</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ REACH</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ EU Organic</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ Rotterdam Hub</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/markets/north-america" class="group flex items-center gap-4 p-5 rounded-2xl border border-stone-100 hover:border-amber-200 hover:bg-amber-50/40 transition-all duration-200 hover:shadow-md">
+          <span aria-hidden="true" class="text-5xl shrink-0 group-hover:scale-110 transition-transform duration-200">🇺🇸</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-stone-900 group-hover:text-amber-700 transition-colors">United States</h3>
+            <p class="text-xs text-stone-400 mt-0.5 truncate">FDA Approved · New York · LA · Savannah</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ FDA</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ FSMA Ready</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ USDA Organic</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/markets/north-america#canada" class="group flex items-center gap-4 p-5 rounded-2xl border border-stone-100 hover:border-amber-200 hover:bg-amber-50/40 transition-all duration-200 hover:shadow-md">
+          <span aria-hidden="true" class="text-5xl shrink-0 group-hover:scale-110 transition-transform duration-200">🇨🇦</span>
+          <div class="min-w-0">
+            <h3 class="font-bold text-stone-900 group-hover:text-amber-700 transition-colors">Canada</h3>
+            <p class="text-xs text-stone-400 mt-0.5 truncate">CFIA Approved · Toronto · Vancouver · Montréal</p>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ CFIA</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ SFCR Ready</span>
+              <span class="text-[11px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-medium">✓ Organic</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="mt-8 grid grid-cols-3 gap-4 max-w-xl mx-auto text-center">
+        <div class="p-4 rounded-xl bg-stone-50">
+          <div class="text-xl font-bold text-stone-900">5,000+</div>
+          <div class="text-xs text-stone-400 mt-1">Tons Exported (2025)</div>
+        </div>
+        <div class="p-4 rounded-xl bg-stone-50">
+          <div class="text-xl font-bold text-stone-900">98%</div>
+          <div class="text-xs text-stone-400 mt-1">On-Time Delivery</div>
+        </div>
+        <div class="p-4 rounded-xl bg-stone-50">
+          <div class="text-xl font-bold text-stone-900">24/7</div>
+          <div class="text-xs text-stone-400 mt-1">Logistics Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONTACT FORM  (Formspree)                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="contact" class="py-24 md:py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #fefce8 0%, #fef3c7 40%, #ecfdf5 100%);">
+
+    <div class="absolute top-0 left-0 w-80 h-80 bg-amber-200/25 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-100/35 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-5 gap-14 items-start">
+
+        <!-- Left — messaging -->
+        <div class="lg:col-span-2 lg:pt-4">
+          <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Get in Touch</span>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mt-4 leading-tight text-stone-900">
+            Let's Build Something<br />
+            <span class="text-amber-600">Great Together</span>
+          </h2>
+          <p class="mt-5 text-stone-600 text-lg leading-relaxed">
+            Looking for a quote, samples, or product information? Fill in the form and we'll respond within <strong class="text-stone-800">24 hours</strong>.
+          </p>
+
+          <ul class="mt-8 space-y-5">
+            <li class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0 text-lg" aria-hidden="true">📧</div>
+              <div>
+                <p class="text-xs text-stone-400 font-medium uppercase tracking-wider">Email</p>
+                <a href="mailto:export@victoriaagribusiness.com" class="text-stone-700 font-medium hover:text-amber-700 transition-colors">export@victoriaagribusiness.com</a>
+              </div>
+            </li>
+            <li class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0 text-lg" aria-hidden="true">📞</div>
+              <div>
+                <p class="text-xs text-stone-400 font-medium uppercase tracking-wider">Phone</p>
+                <a href="tel:+254700000000" class="text-stone-700 font-medium hover:text-amber-700 transition-colors">+254 700 000 000</a>
+              </div>
+            </li>
+            <li class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center shrink-0 text-lg" aria-hidden="true">📍</div>
+              <div>
+                <p class="text-xs text-stone-400 font-medium uppercase tracking-wider">Office</p>
+                <p class="text-stone-700 font-medium">Nairobi, Kenya</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right — form card -->
+        <div class="lg:col-span-3 bg-white rounded-3xl shadow-xl shadow-stone-200/60 border border-stone-100/80 p-8 md:p-10">
+
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Full Name <span class="text-amber-600" aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Mwangi"
+                  class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm placeholder:text-stone-300 transition-all" />
+              </div>
+              <div>
+                <label for="company" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Company</label>
+                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Acme Imports Ltd."
+                  class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm placeholder:text-stone-300 transition-all" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 mt-5">
+              <div>
+                <label for="email" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Email <span class="text-amber-600" aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+                  class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm placeholder:text-stone-300 transition-all" />
+              </div>
+              <div>
+                <label for="phone" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000"
+                  class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm placeholder:text-stone-300 transition-all" />
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <label for="enquiry" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Type of Enquiry</label>
+              <select id="enquiry" name="enquiry"
+                class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm transition-all appearance-none cursor-pointer">
+                <option value="">Select one…</option>
+                <option value="quote">Export Quote</option>
+                <option value="samples">Product Samples</option>
+                <option value="partnership">Partnership / Distribution</option>
+                <option value="other">General Enquiry</option>
+              </select>
+            </div>
+
+            <div class="mt-5">
+              <label for="message" class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Message <span class="text-amber-600" aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+              <textarea id="message" name="message" required rows="4"
+                placeholder="Tell us about your product needs, quantities, destination market…"
+                class="form-field w-full px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-stone-900 text-sm placeholder:text-stone-300 transition-all resize-none"></textarea>
+            </div>
+
+            <button id="form-submit" type="submit"
+              class="mt-6 w-full bg-amber-600 hover:bg-amber-700 active:scale-[0.98] text-white font-bold py-4 rounded-xl text-base shadow-lg shadow-amber-500/20 transition-all duration-200">
+              Send Enquiry
+            </button>
+
+            <p class="text-center text-xs text-stone-400 mt-4">We respond within 24 hours. Your details are never shared.</p>
+          </form>
+
+          <div id="form-success" class="hidden text-center py-10">
+            <div class="text-5xl mb-4" aria-hidden="true">✅</div>
+            <h3 class="text-xl font-bold text-stone-900">Message Received!</h3>
+            <p class="text-stone-500 mt-2 text-sm">We'll be in touch within 24 hours.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- QUALITY & CERTIFICATIONS                    -->
+  <!-- Deep forest green background                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #1c3a2a 0%, #14532d 55%, #1a3320 100%);">
+    <div class="absolute inset-0 opacity-[0.05]"
+      style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 32px 32px;"
+      aria-hidden="true"></div>
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-300/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-amber-400 font-semibold text-xs tracking-[0.3em] uppercase">Quality Assured</span>
+          <h2 class="text-4xl md:text-5xl font-display font-bold mt-4 leading-tight">
+            Every Batch,<br />Every Shipment —<br />
+            <span class="text-amber-400">Tested & Certified</span>
+          </h2>
+          <p class="text-emerald-100/70 text-lg mt-6 leading-relaxed">
+            We don't just meet international standards — we exceed them. From soil analysis to final export, every shipment undergoes rigorous third-party testing.
+          </p>
+
+          <div class="grid grid-cols-2 gap-5 mt-10">
+            <div class="flex items-start gap-3 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+              <span aria-hidden="true" class="text-2xl mt-0.5">🔬</span>
+              <div><h4 class="font-semibold text-white text-sm">Lab Tested</h4><p class="text-emerald-200/60 text-xs mt-0.5">Microbiological & chemical analysis</p></div>
+            </div>
+            <div class="flex items-start gap-3 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+              <span aria-hidden="true" class="text-2xl mt-0.5">🌱</span>
+              <div><h4 class="font-semibold text-white text-sm">Organic Options</h4><p class="text-emerald-200/60 text-xs mt-0.5">EU & USDA certified</p></div>
+            </div>
+            <div class="flex items-start gap-3 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+              <span aria-hidden="true" class="text-2xl mt-0.5">📋</span>
+              <div><h4 class="font-semibold text-white text-sm">HACCP Certified</h4><p class="text-emerald-200/60 text-xs mt-0.5">ISO 22000 compliant</p></div>
+            </div>
+            <div class="flex items-start gap-3 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-default">
+              <span aria-hidden="true" class="text-2xl mt-0.5">🔍</span>
+              <div><h4 class="font-semibold text-white text-sm">Full Traceability</h4><p class="text-emerald-200/60 text-xs mt-0.5">Farm to fork tracking</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="group bg-white/5 hover:bg-amber-500/10 border border-white/10 hover:border-amber-400/30 p-7 rounded-2xl transition-all duration-300 cursor-default">
+            <div class="text-amber-400 text-4xl font-bold group-hover:scale-105 transition-transform inline-block">100%</div>
+            <div class="text-emerald-200/60 text-sm mt-2">Traceable sourcing</div>
+          </div>
+          <div class="group bg-white/5 hover:bg-amber-500/10 border border-white/10 hover:border-amber-400/30 p-7 rounded-2xl transition-all duration-300 cursor-default">
+            <div class="text-amber-400 text-4xl font-bold group-hover:scale-105 transition-transform inline-block">0</div>
+            <div class="text-emerald-200/60 text-sm mt-2">Pesticide residue failures</div>
+          </div>
+          <div class="group bg-white/5 hover:bg-amber-500/10 border border-white/10 hover:border-amber-400/30 p-7 rounded-2xl transition-all duration-300 cursor-default">
+            <div class="text-amber-400 text-4xl font-bold group-hover:scale-105 transition-transform inline-block">5+</div>
+            <div class="text-emerald-200/60 text-sm mt-2">International certifications</div>
+          </div>
+          <div class="group bg-white/5 hover:bg-amber-500/10 border border-white/10 hover:border-amber-400/30 p-7 rounded-2xl transition-all duration-300 cursor-default">
+            <div class="text-amber-400 text-4xl font-bold group-hover:scale-105 transition-transform inline-block">24h</div>
+            <div class="text-emerald-200/60 text-sm mt-2">Sample dispatch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- OUR PARTNERS                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-20 bg-white border-t border-stone-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <span class="text-amber-600 font-semibold text-xs tracking-[0.3em] uppercase">Ecosystem</span>
+        <h2 class="text-3xl md:text-4xl font-display font-bold mt-3 text-stone-900">Our Partners</h2>
+        <p class="text-stone-400 mt-3 max-w-xl mx-auto text-base">
+          We're proud to grow alongside organisations that share our commitment to sustainable agriculture and community development.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 lg:gap-10 max-w-5xl mx-auto">
-        <!-- Europe Card -->
-        <a
-          href="/markets/europe"
-          class="group relative bg-gradient-to-br from-amber-50 to-stone-50 p-8 rounded-3xl border-2 border-transparent hover:border-amber-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div
-            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <span class="bg-amber-600 text-white text-xs px-3 py-1 rounded-full"
-              >Learn More →</span
-            >
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+
+        <a href="https://www.widu.africa" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-4 p-7 rounded-2xl border border-stone-100 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-white">
+          <div class="h-14 flex items-center justify-center">
+            <img src="/partners/widu.jpg" alt="Widu" loading="lazy" width="120" height="56"
+              class="max-h-14 max-w-[120px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="hidden items-center justify-center w-14 h-14 rounded-xl bg-amber-50 text-amber-600 font-bold text-lg" aria-hidden="true">W</div>
           </div>
-          <div
-            class="text-8xl mb-6 group-hover:scale-110 transition-transform duration-300"
-          >
-            🇪🇺
-          </div>
-          <h3 class="text-2xl font-bold text-stone-900 mb-3">Europe</h3>
-          <p class="text-stone-600 mb-4">
-            Germany • Netherlands • UK • France • Scandinavia
-          </p>
-          <ul class="space-y-2 text-sm text-stone-500">
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> REACH Compliant
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> EU Organic Certified
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> Rotterdam Hub
-            </li>
-          </ul>
-          <div
-            class="mt-6 pt-4 border-t border-amber-200/50 flex items-center justify-between"
-          >
-            <span
-              class="text-sm font-medium text-amber-600 group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-            >
-              Market Details
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"></path>
-              </svg>
-            </span>
-          </div>
+          <span class="text-xs font-semibold text-stone-400 group-hover:text-amber-600 transition-colors tracking-wide">Widu</span>
         </a>
 
-        <!-- USA Card -->
-        <a
-          href="/markets/north-america"
-          class="group relative bg-gradient-to-br from-amber-50 to-stone-50 p-8 rounded-3xl border-2 border-transparent hover:border-amber-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div
-            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <span class="bg-amber-600 text-white text-xs px-3 py-1 rounded-full"
-              >Learn More →</span
-            >
+        <a href="https://www.ygap.org" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-4 p-7 rounded-2xl border border-stone-100 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-white">
+          <div class="h-14 flex items-center justify-center">
+            <img src="/partners/ygap.jpg" alt="yGap" loading="lazy" width="120" height="56"
+              class="max-h-14 max-w-[120px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="hidden items-center justify-center w-14 h-14 rounded-xl bg-amber-50 text-amber-600 font-bold text-lg" aria-hidden="true">yG</div>
           </div>
-          <div
-            class="text-8xl mb-6 group-hover:scale-110 transition-transform duration-300"
-          >
-            🇺🇸
-          </div>
-          <h3 class="text-2xl font-bold text-stone-900 mb-3">United States</h3>
-          <p class="text-stone-600 mb-4">
-            FDA Approved • Major Ports: NY, LA, Savannah
-          </p>
-          <ul class="space-y-2 text-sm text-stone-500">
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> FDA Compliant
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> FSMA Ready
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> USDA Organic
-            </li>
-          </ul>
-          <div
-            class="mt-6 pt-4 border-t border-amber-200/50 flex items-center justify-between"
-          >
-            <span
-              class="text-sm font-medium text-amber-600 group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-            >
-              Market Details
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"></path>
-              </svg>
-            </span>
-          </div>
+          <span class="text-xs font-semibold text-stone-400 group-hover:text-amber-600 transition-colors tracking-wide">yGap</span>
         </a>
 
-        <!-- Canada Card -->
-        <a
-          href="/markets/north-america#canada"
-          class="group relative bg-gradient-to-br from-amber-50 to-stone-50 p-8 rounded-3xl border-2 border-transparent hover:border-amber-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
-        >
-          <div
-            class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            <span class="bg-amber-600 text-white text-xs px-3 py-1 rounded-full"
-              >Learn More →</span
-            >
+        <a href="https://www.lakehub.co.ke" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-4 p-7 rounded-2xl border border-stone-100 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-white">
+          <div class="h-14 flex items-center justify-center">
+            <img src="/partners/lakehub.jpg" alt="LakeHub" loading="lazy" width="120" height="56"
+              class="max-h-14 max-w-[120px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="hidden items-center justify-center w-14 h-14 rounded-xl bg-amber-50 text-amber-600 font-bold text-lg" aria-hidden="true">LH</div>
           </div>
-          <div
-            class="text-8xl mb-6 group-hover:scale-110 transition-transform duration-300"
-          >
-            🇨🇦
-          </div>
-          <h3 class="text-2xl font-bold text-stone-900 mb-3">Canada</h3>
-          <p class="text-stone-600 mb-4">
-            CFIA Approved • Toronto • Vancouver • Montreal
-          </p>
-          <ul class="space-y-2 text-sm text-stone-500">
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> CFIA Compliant
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> SFCR Ready
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-emerald-600">✓</span> Organic Certified
-            </li>
-          </ul>
-          <div
-            class="mt-6 pt-4 border-t border-amber-200/50 flex items-center justify-between"
-          >
-            <span
-              class="text-sm font-medium text-amber-600 group-hover:translate-x-2 transition-transform inline-flex items-center gap-1"
-            >
-              Market Details
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"></path>
-              </svg>
-            </span>
-          </div>
+          <span class="text-xs font-semibold text-stone-400 group-hover:text-amber-600 transition-colors tracking-wide">LakeHub</span>
         </a>
-      </div>
 
-      <!-- Regional Stats -->
-      <div class="mt-16 grid grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
-        <div class="p-4">
-          <div class="text-2xl font-bold text-stone-900">5,000+</div>
-          <div class="text-sm text-stone-500">Tons Exported (2025)</div>
-        </div>
-        <div class="p-4">
-          <div class="text-2xl font-bold text-stone-900">98%</div>
-          <div class="text-sm text-stone-500">On-Time Delivery</div>
-        </div>
-        <div class="p-4">
-          <div class="text-2xl font-bold text-stone-900">24/7</div>
-          <div class="text-sm text-stone-500">Logistics Support</div>
-        </div>
+        <a href="https://www.siemens-stiftung.org" target="_blank" rel="noopener noreferrer"
+          class="group flex flex-col items-center justify-center gap-4 p-7 rounded-2xl border border-stone-100 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 bg-white">
+          <div class="h-14 flex items-center justify-center">
+            <img src="/partners/siemens-stiftung.jpg" alt="Siemens Stiftung" loading="lazy" width="120" height="56"
+              class="max-h-14 max-w-[120px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="hidden items-center justify-center w-14 h-14 rounded-xl bg-amber-50 text-amber-600 font-bold text-lg" aria-hidden="true">SS</div>
+          </div>
+          <span class="text-xs font-semibold text-stone-400 group-hover:text-amber-600 transition-colors tracking-wide">Siemens Stiftung</span>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- QUALITY & CERTIFICATIONS SECTION -->
-  <section class="py-24 bg-stone-900 text-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <span
-            class="text-amber-400 font-semibold text-sm tracking-[0.2em] uppercase"
-            >Quality Assured</span
-          >
-          <h2
-            class="text-4xl md:text-5xl font-display font-bold mt-4 leading-tight"
-          >
-            Every Batch,<br />Every Shipment —<br />Tested & Certified
-          </h2>
-          <p class="text-stone-300 text-lg mt-6 leading-relaxed">
-            We don't just meet international standards — we exceed them. From
-            soil analysis to final export, every shipment undergoes rigorous
-            third-party testing.
-          </p>
 
-          <div class="grid grid-cols-2 gap-6 mt-12">
-            <div class="flex items-start gap-3">
-              <span class="text-3xl">🔬</span>
-              <div>
-                <h4 class="font-semibold text-white">Lab Tested</h4>
-                <p class="text-sm text-stone-400">
-                  Microbiological & chemical analysis
-                </p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-3xl">🌱</span>
-              <div>
-                <h4 class="font-semibold text-white">Organic Options</h4>
-                <p class="text-sm text-stone-400">EU & USDA certified</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-3xl">📋</span>
-              <div>
-                <h4 class="font-semibold text-white">HACCP Certified</h4>
-                <p class="text-sm text-stone-400">ISO 22000 compliant</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <span class="text-3xl">🔍</span>
-              <div>
-                <h4 class="font-semibold text-white">Full Traceability</h4>
-                <p class="text-sm text-stone-400">Farm to fork tracking</p>
-              </div>
-            </div>
-          </div>
-        </div>
+  <script>
+    const form      = document.getElementById('contact-form') as HTMLFormElement | null;
+    const success   = document.getElementById('form-success') as HTMLElement | null;
+    const btn       = document.getElementById('form-submit')  as HTMLButtonElement | null;
 
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
-            <div class="text-amber-400 text-4xl font-bold">100%</div>
-            <div class="text-sm text-stone-400 mt-1">Traceable sourcing</div>
-          </div>
-          <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
-            <div class="text-amber-400 text-4xl font-bold">0</div>
-            <div class="text-sm text-stone-400 mt-1">
-              Pesticide residue failures
-            </div>
-          </div>
-          <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
-            <div class="text-amber-400 text-4xl font-bold">5+</div>
-            <div class="text-sm text-stone-400 mt-1">
-              International certifications
-            </div>
-          </div>
-          <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700">
-            <div class="text-amber-400 text-4xl font-bold">24h</div>
-            <div class="text-sm text-stone-400 mt-1">Sample dispatch</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    if (form && btn) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+          if (res.ok) {
+            form.style.display = 'none';
+            success?.classList.remove('hidden');
+          } else {
+            btn.textContent = 'Something went wrong — please try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Network error — please try again';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
 
-  <!-- CONTACT CTA - More compelling -->
-  <section
-    class="py-32 bg-gradient-to-br from-amber-900 via-orange-900 to-stone-900 text-white"
-  >
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <span
-        class="inline-block bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full text-amber-300 text-sm mb-8 border border-white/20"
-      >
-        🚀 Ready to grow your business?
-      </span>
-
-      <h2 class="text-4xl md:text-5xl font-display font-bold leading-tight">
-        Let's Talk About Your<br />
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300"
-        >
-          Import Needs
-        </span>
-      </h2>
-
-      <p class="mt-6 text-xl text-white/80 max-w-2xl mx-auto">
-        Whether you're a distributor, manufacturer, or retailer — we're here to
-        help. Custom quotes, samples, and technical specifications within 24
-        hours.
-      </p>
-
-      <!-- Quick contact options -->
-      <div class="flex flex-wrap justify-center gap-6 mt-10">
-        <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-          <span>📧</span>
-          <span>export@victoriaherbs.co.ke</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-          <span>📞</span>
-          <span>+254 700 000 000</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-          <span>⏰</span>
-          <span>24h Response</span>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-12">
-        <a
-          href="/contact"
-          class="px-10 py-5 bg-white text-stone-900 font-semibold rounded-2xl hover:bg-amber-50 transition-all text-lg shadow-xl hover:shadow-2xl hover:scale-105"
-        >
-          Request a Quote
-        </a>
-        <a
-          href="/contact#samples"
-          class="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-2xl hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-sm"
-        >
-          Order Samples
-        </a>
-      </div>
-    </div>
-  </section>
 </Layout>
